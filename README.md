@@ -90,7 +90,7 @@ RedditExtractoR uses Reddit's public JSON endpoints (no authentication needed) a
 
 ## Author
 
-[Your Name], PhD student, University of Arizona
+Laura Thompson, PhD student, University of Arizona
 Course: Digital Traces
 
 ## License / Use
