@@ -69,7 +69,7 @@ What *can* be committed (and is, where the file size and IRB guidance allow): an
 | Tool | Purpose | Covered in class? |
 |------|---------|-------------------|
 | R / tidyverse | Data wrangling | Yes |
-| **RedditExtractoR** | Reddit scraping (no API key required) | **No** |
+| **RedditExtractoR** | Reddit scraping (no API key required) | **Student** |
 | **VADER (`vader` R package)** | Sentiment lexicon designed for social media text | **No** |
 | **`stm` (Structural Topic Model)** | Topic modeling with covariates | **No** |
 | ggplot2, wordcloud | Visualization | Yes |
