@@ -149,5 +149,65 @@ wordcloud(
   scale        = c(4, 0.5)
 )
 dev.off()
+library(ggplot2)
+library(dplyr)
+library(forcats)
 
+topic_labels <- tibble::tibble(
+  topic_num = 1:15,
+  label = c(
+    "Jobs & employment",                  # 1
+    "Frustration & venting",              # 2
+    "City government & enforcement",      # 3
+    "Community giving & food",            # 4
+    "Specific Tucson locations",          # 5
+    "Conversational filler",              # 6
+    "Personal stories & family",          # 7
+    "Local news / east side",             # 8
+    "Services & mental health",           # 9
+    "Wealth inequality",                  # 10
+    "Camping bans & parks",               # 11
+    "Drug addiction & criminal justice",  # 12
+    "Solutions debate",                   # 13
+    "Safety & lighting",                  # 14
+    "Encampments & fires"                 # 15
+  ),
+  theme_group = c(
+    "Causes & explanations","Filler / noise","Policy & solutions","Services & response","Local geography",
+    "Filler / noise","Causes & explanations","Local geography","Services & response","Causes & explanations",
+    "Policy & solutions","Causes & explanations","Policy & solutions","Local geography","Local geography"
+  )
+)
+
+prev <- read.csv("Results/topic_prevalence.csv") %>%
+  mutate(topic_num = as.integer(sub("topic_", "", topic)),
+         pct = prevalence * 100) %>%
+  left_join(topic_labels, by = "topic_num")
+
+theme_colors <- c(
+  "Causes & explanations" = "#D85A30",
+  "Local geography"       = "#0F6E56",
+  "Policy & solutions"    = "#534AB7",
+  "Services & response"   = "#1D9E75",
+  "Filler / noise"        = "#888780"
+)
+
+p_topic_interp <- ggplot(prev,
+                         aes(x = pct, y = fct_reorder(label, pct), fill = theme_group)) +
+  geom_col() +
+  geom_text(aes(label = sprintf("%.1f%%", pct)),
+            hjust = -0.15, size = 3.2, color = "grey30") +
+  scale_fill_manual(values = theme_colors, name = NULL) +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.15))) +
+  labs(
+    title = "Topics in r/Tucson homelessness discussion",
+    subtitle = "Structural topic model, K=15, grouped by thematic family",
+    x = "Share of corpus (%)", y = NULL
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom",
+        panel.grid.major.y = element_blank())
+
+ggsave("Results/fig_topic_interpretation.png", p_topic_interp,
+       width = 9, height = 6, dpi = 200)
 message("All figures written to Results/")
