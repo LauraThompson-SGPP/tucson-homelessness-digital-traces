@@ -1,0 +1,11 @@
+metric,value
+raw_posts,50
+raw_comments,4398
+analysis_posts,50
+analysis_comments,4215
+date_range_start,2025-05-17
+date_range_end,2026-05-11
+unique_post_authors,45
+unique_comment_authors,1475
+median_score_post,60.5
+median_comments_per_post,84.3

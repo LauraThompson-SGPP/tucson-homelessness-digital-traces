@@ -1,0 +1,17 @@
+# Don't commit raw or user-attributed data
+Data/raw_posts.csv
+Data/raw_comments.csv
+Data/analysis_posts.csv
+Data/analysis_comments.csv
+Data/posts_with_sentiment.csv
+Data/comments_with_sentiment.csv
+
+# R artifacts
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# OS junk
+.DS_Store
+Thumbs.db
