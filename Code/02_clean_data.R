@@ -2,7 +2,7 @@
 # Script:   02_clean_data.R
 # Project:  Tucson Homelessness Digital Traces
 # Purpose:  Build the analysis dataset from the raw scrape:
-#             - parse dates and filter to project window (2024-2025)
+#             - parse dates and filter to project window (2025-2026)
 #             - remove [deleted] / [removed] / common bot content
 #             - anonymize (replace usernames with stable integer IDs)
 #             - link comments to their parent thread
