@@ -26,9 +26,19 @@
 # ===========================================================================
 
 # --- Packages --------------------------------------------------------------
-required <- c("vader", "dplyr", "readr", "lubridate", "tidyr")
-to_install <- setdiff(required, rownames(installed.packages()))
+# vader was removed from CRAN; install from the CRAN archive if missing.
+# Other packages install normally from CRAN.
+cran_pkgs <- c("dplyr", "readr", "lubridate", "tidyr")
+to_install <- setdiff(cran_pkgs, rownames(installed.packages()))
 if (length(to_install)) install.packages(to_install)
+
+if (!"vader" %in% rownames(installed.packages())) {
+  install.packages(
+    "https://cran.r-project.org/src/contrib/Archive/vader/vader_0.2.1.tar.gz",
+    repos = NULL,
+    type  = "source"
+  )
+}
 
 library(vader)
 library(dplyr)
